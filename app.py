@@ -124,6 +124,10 @@ PREGUNTA DEL MORTAL:
         return f"El Oráculo sufre un oscuro error con Groq: {str(e)}"
 
 # --- Flask endpoint ---
+@app.route('/', methods=['GET'])
+def health_check():
+    return jsonify({"status": "El Oráculo está despierto", "endpoints": ["/chat"]})
+
 @app.route('/chat', methods=['POST'])
 def chat():
     data = request.json or {}
